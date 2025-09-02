@@ -10,7 +10,7 @@ function CustomerListPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/customers")
+      .get("customer-managemnt-app-backend-production.up.railway.app/api/customers")
       .then((response) => setCustomers(response.data.data))
       .catch((error) => setError(error.response?.data?.error || "Failed to fetch customers"));
   }, []);
