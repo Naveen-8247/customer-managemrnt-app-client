@@ -14,7 +14,7 @@ function AddressForm({ customerId, onDone, onAddressAdded }) {
     const newAddress = { address_details: addressDetails, city, state, pin_code: pinCode };
 
     axios
-      .post(`http://localhost:5000/api/customers/${customerId}/addresses`, newAddress)
+      .post(`customer-managemnt-app-backend-production.up.railway.app/api/customers/${customerId}/addresses`, newAddress)
       .then(() => {
         onAddressAdded();
         onDone();
