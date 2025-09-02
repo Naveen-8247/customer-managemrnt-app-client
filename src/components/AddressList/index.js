@@ -9,7 +9,7 @@ function AddressList({ customerId }) {
 
   const fetchAddresses = useCallback(() => {
     axios
-      .get(`http://localhost:5000/api/customers/${customerId}/addresses`)
+      .get(`customer-managemnt-app-backend-production.up.railway.app/api/customers/${customerId}/addresses`)
       .then((response) => setAddresses(response.data.data))
       .catch((error) => console.error(error));
   }, [customerId]);
