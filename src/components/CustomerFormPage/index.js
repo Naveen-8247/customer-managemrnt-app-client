@@ -14,7 +14,7 @@ function CustomerFormPage() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`customer-managemnt-app-backend-production.up.railway.app/api/customers/${id}`)
+        .get(`https://customer-management-app-backend-production.up.railway.app/api/customers/${id}`)
         .then((res) => setCustomerData(res.data.data))
         .catch((err) => setError(err.response?.data?.error || "Error fetching customer"));
     }
