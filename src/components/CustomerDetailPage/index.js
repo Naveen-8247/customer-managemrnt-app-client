@@ -12,7 +12,7 @@ function CustomerDetailPage() {
 
   // Fetch customer details
   useEffect(() => {
-    axios.get("customer-managemnt-app-backend-production.up.railway.app/api/customers/" + id)
+    axios.get("https://customer-management-app-backend-production.up.railway.app/api/customers/" + id)
       .then((res) => setCustomer(res.data.data))
       .catch((err) => {
         setError(err.response?.data?.error || "Error fetching customer");
