@@ -1,9 +1,11 @@
-
+// src/components/CustomerFormPage/index.js
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import CustomerForm from "../CustomerForm";
 import "./index.css";
+
+const API_BASE = "https://customer-management-app-backend-production.up.railway.app";
 
 function CustomerFormPage() {
   const [customerData, setCustomerData] = useState(null);
@@ -14,23 +16,29 @@ function CustomerFormPage() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`https://customer-management-app-backend-production.up.railway.app/api/customers/${id}`)
+        .get(`${API_BASE}/api/customers/${id}`)
         .then((res) => setCustomerData(res.data.data))
-        .catch((err) => setError(err.response?.data?.error || "Error fetching customer"));
+        .catch((err) =>
+          setError(err.response?.data?.error || "Error fetching customer")
+        );
     }
   }, [id]);
 
   const handleSubmit = (data) => {
     if (id) {
       axios
-        .put(`http://localhost:5000/api/customers/${id}`, data)
+        .put(`${API_BASE}/api/customers/${id}`, data)
         .then(() => navigate(`/customers/${id}`))
-        .catch((err) => setError(err.response?.data?.error || "Failed to update"));
+        .catch((err) =>
+          setError(err.response?.data?.error || "Failed to update")
+        );
     } else {
       axios
-        .post("http://localhost:5000/api/customers", data)
+        .post(`${API_BASE}/api/customers`, data)
         .then(() => navigate("/"))
-        .catch((err) => setError(err.response?.data?.error || "Failed to create"));
+        .catch((err) =>
+          setError(err.response?.data?.error || "Failed to create")
+        );
     }
   };
 
