@@ -4,6 +4,8 @@ import axios from "axios";
 import AddressList from "../AddressList";
 import "./index.css";
 
+const API_BASE = "https://customer-management-app-backend-production.up.railway.app";
+
 function CustomerDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -12,7 +14,8 @@ function CustomerDetailPage() {
 
   // Fetch customer details
   useEffect(() => {
-    axios.get("https://customer-management-app-backend-production.up.railway.app/api/customers/" + id)
+    axios
+      .get(`${API_BASE}/api/customers/${id}`)
       .then((res) => setCustomer(res.data.data))
       .catch((err) => {
         setError(err.response?.data?.error || "Error fetching customer");
@@ -24,7 +27,8 @@ function CustomerDetailPage() {
     const confirmDelete = window.confirm("Are you sure you want to delete this customer?");
     if (!confirmDelete) return;
 
-    axios.delete("http://localhost:5000/api/customers/" + id)
+    axios
+      .delete(`${API_BASE}/api/customers/${id}`)
       .then(() => {
         alert("Customer deleted successfully");
         navigate("/"); // Redirect to customer list
@@ -52,3 +56,4 @@ function CustomerDetailPage() {
 }
 
 export default CustomerDetailPage;
+
